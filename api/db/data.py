@@ -6,8 +6,8 @@ class BlogPost(db.Document):
     author = db.StringField(required=True)
     content = db.StringField(required=True)
     date = db.DateTimeField()
-    song_title = db.StringField()
-    song_artist = db.StringField()
-    spotify_link = db.StringField()
-    youtube_link = db.StringField()
+    song_titles = db.ListField(db.StringField())
+    song_artists = db.ListField(db.StringField())
+    spotify_links = db.ListField(db.StringField())
+    youtube_links = db.ListField(db.StringField())
     meta = {'collection': 'musicBlog'}
