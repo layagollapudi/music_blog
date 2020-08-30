@@ -56,4 +56,15 @@ def get_all_blog_posts(order_key):
         order_key = '-' + order_key
 
     posts = BlogPost.objects(**args).order_by(order_key).to_json()
+    return Response(posts, mimetype="application/json", status=200)
+
+
+"""
+Route to create posts and save them to mongo.
+"""
+@bp.route("/create", methods=["GET", "POST"])
+def get_all_blog_posts(order_key):
+    if request.method == "POST":
+        pass
+
     return Response({}, mimetype="application/json", status=200)
