@@ -1,0 +1,13 @@
+Metadata-Version: 2.1
+Name: musicBlog
+Version: 1.0.0
+Summary: Personal Music thoughts blog
+Home-page: http://musicalmusings.me/
+Maintainer: Laya Gollapudi
+Maintainer-email: layagollapudi@gmail.com
+License: BSD
+Description: musicBlog
+        ======
+        
+Platform: UNKNOWN
+Provides-Extra: test
