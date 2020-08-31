@@ -15,13 +15,11 @@ Query parameters can be provided for more filtration, which include:
 > title = title of the blog post
 > author = name of the author
 > date = date on which the post was written
-> song_titles = name of the song which the post is about
-> song_artists = name of the artist who the post is about
 """
 @bp.route("/", methods=["GET"])
 def get_blog_posts():
     # Get and populate argument dictionary for mongo query
-    query_params = ['title', 'author', 'date', 'song_titles', 'song_artists']
+    query_params = ['title', 'author', 'date']
     args = make_args_dict(request, query_params)
 
     posts = BlogPost.objects(**args).to_json()
@@ -36,14 +34,12 @@ Query parameters can be provided for more filtration, which include:
 > title = title of the blog post
 > author = name of the author
 > date = date on which the post was written
-> song_title = name of the song which the post is about
-> song_artist = name of the artist who the post is about
 > reverse = if to send order from least->greatest instead (defaults to false)
 """
 @bp.route("/ordered/<string:order_key>", methods=["GET"])
 def get_all_blog_posts(order_key):
     # Get and populate argument dictionary for mongo query
-    query_params = ['title', 'author', 'date', 'song_title', 'song_artist']
+    query_params = ['title', 'author', 'date']
 
     # We don't want to order on a key that we are filtering on, so we remove it from the list
     if order_key in query_params:
@@ -61,10 +57,16 @@ def get_all_blog_posts(order_key):
 
 """
 Route to create posts and save them to mongo.
-"""
-@bp.route("/create", methods=["GET", "POST"])
-def get_all_blog_posts(order_key):
-    if request.method == "POST":
-        pass
 
-    return Response({}, mimetype="application/json", status=200)
+Post form should include:
+> title = title of the blog post
+> author = name of the author
+> date = date on which the post was written
+> songs = key-val dict of artist to song
+"""
+@bp.route("/create", methods=["POST"])
+def write_blog_post():
+    body = verifies_blog_post(request)
+    post = BlogPost(**body).save()
+
+    return Response({'primary_id': str(post.primary_id)}, mimetype="application/json", status=200)

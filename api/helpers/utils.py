@@ -1,7 +1,9 @@
+import uuid
+
 from flask import request
 from datetime import datetime
 
-LIST_ARGS = ['song_titles', 'song_artists', 'spotify_links', 'youtube_links']
+LIST_ARGS = ['spotify_links', 'youtube_links']
 DATE_FORMAT = "%Y-%m-%d"
 
 '''
@@ -31,3 +33,18 @@ def make_args_dict(request, keys):
             args[key] = val
 
     return args
+
+
+'''
+Verifies and returns proper-formed JSON given post form body.
+
+:request - request object
+'''
+def verifies_blog_post(request):
+    body = request.get_json()
+
+    # generate random UUID for the entry :)
+    id = uuid.uuid4()
+    body['primary_id'] = id
+
+    return body

@@ -1,13 +1,17 @@
 from .db import db
 
+class ReferencedSongs(db.EmbeddedDocument):
+    artist = db.StringField()
+    song_title = db.StringField()
+    album_title = db.StringField()
+
 class BlogPost(db.Document):
-    _id = db.ObjectIdField(required=True, primary_key=True)
-    title = db.StringField(required=True, unique=True)
+    primary_id = db.UUIDField(binary=False, required=True, primary_key=True)
+    title = db.StringField(required=True)
     author = db.StringField(required=True)
     content = db.StringField(required=True)
-    date = db.DateTimeField()
-    song_titles = db.ListField(db.StringField())
-    song_artists = db.ListField(db.StringField())
+    date = db.DateTimeField(required=True)
+    songs = db.EmbeddedDocumentListField(ReferencedSongs)
     spotify_links = db.ListField(db.StringField())
     youtube_links = db.ListField(db.StringField())
     meta = {'collection': 'musicBlog'}
