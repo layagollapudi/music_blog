@@ -56,8 +56,8 @@ def update_blog_post(request, post):
 
     # String fields
     if 'title' in body: post.title = body['title']
-    if 'author' in body: post.title = body['author']
-    if 'content' in body: post.title = body['content']
+    if 'author' in body: post.author = body['author']
+    if 'content' in body: post.content = body['content']
 
     # Date field
     if 'date' in body: post.date = datetime.strptime(body['date'], DATE_FORMAT)
