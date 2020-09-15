@@ -15,32 +15,26 @@ Returns desired argument dictionary given specific keys.
 def make_args_dict(request, keys):
     args = {}
 
-    # For all the searched "keys" ...
-    for key in keys:
+    for key in keys:  # For all the searched "keys" ...
         if key in request.args:
-
-            # List of arguments :)
-            if key in LIST_ARGS:
+            if key in LIST_ARGS:  # List of arguments :)
                 val = request.args.getlist(key)
             else:
                 val = request.args.get(key)
-
-                # Convert to a datetime object
-                if key == 'date':
+                if key == 'date':  # Convert to a datetime object
                     try: val = datetime.strptime(val, DATE_FORMAT)
                     except ValueError: continue
-
             args[key] = val
 
     return args
 
 
 '''
-Verifies and returns proper-formed JSON given post form body.
+Creates and returns proper-formed JSON given post form body.
 
 :request - request object
 '''
-def verifies_blog_post(request):
+def create_blog_post(request):
     body = request.get_json()
 
     # generate random UUID for the entry :)
@@ -48,3 +42,26 @@ def verifies_blog_post(request):
     body['primary_id'] = id
 
     return body
+
+
+
+'''
+Edits and saves proper-formed BlogPost object.
+
+:request - request object
+:post - BlogPost object
+'''
+def update_blog_post(request, post):
+    body = request.get_json()
+
+    # String fields
+    if 'title' in body: post.title = body['title']
+    if 'author' in body: post.title = body['author']
+    if 'content' in body: post.title = body['content']
+
+    # Date field
+    if 'date' in body: post.date = datetime.strptime(body['date'], DATE_FORMAT)
+
+    # TODO: songs dict and links editing ...
+    post.save()
+    return

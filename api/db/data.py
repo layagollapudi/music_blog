@@ -1,4 +1,5 @@
 from .db import db
+from flask_mongoengine import BaseQuerySet
 
 class ReferencedSongs(db.EmbeddedDocument):
     artist = db.StringField()
@@ -14,4 +15,4 @@ class BlogPost(db.Document):
     songs = db.EmbeddedDocumentListField(ReferencedSongs)
     spotify_links = db.ListField(db.StringField())
     youtube_links = db.ListField(db.StringField())
-    meta = {'collection': 'musicBlog'}
+    meta = {'collection': 'musicBlog', 'queryset_class': BaseQuerySet}
