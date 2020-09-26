@@ -2,11 +2,10 @@ from flask import Blueprint, Response
 from flask import flash, g, jsonify, render_template, redirect, request, url_for
 from werkzeug.exceptions import abort
 
-from .db.data import BlogPost
-from .helpers.utils import *
+from app.api import bp
+from app.db.db import BlogPost
+from app.helpers.utils import *
 
-
-bp = Blueprint("blog", __name__)
 
 """
 Route to get all posts from mongo.

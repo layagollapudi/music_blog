@@ -1,5 +1,9 @@
-from .db import db
-from flask_mongoengine import BaseQuerySet
+from flask_mongoengine import MongoEngine, BaseQuerySet
+
+db = MongoEngine()
+
+def initialize_db(app):
+    db.init_app(app)
 
 class ReferencedSongs(db.EmbeddedDocument):
     artist = db.StringField()
