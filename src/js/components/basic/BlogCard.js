@@ -30,7 +30,7 @@ export default function BlogCard({ title, date, author, description, image }) {
         <Card className={classes.card}>
           <div className={classes.cardDetails}>
             <CardContent>
-              {title && <Typography component="h2" variant="h5">{title}</Typography>}
+              {title && <Typography component="h3" variant="h6">{title}</Typography>}
               {date && <Typography variant="subtitle1" color="textSecondary">{date}</Typography>}
               {author && <Typography variant="subtitle1" color="textSecondary">{author}</Typography>}
               {description && <Typography variant="subtitle1" paragraph>{description}...</Typography>}
