@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
 
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -14,7 +13,6 @@ import BlogCard from './basic/BlogCard';
 
 export default function Home() {
   const [blogPosts, setBlogPosts] = useState([]);
-  const history = useHistory();
 
   useEffect(() => {
     fetch('http://localhost:5000/')
@@ -22,8 +20,6 @@ export default function Home() {
       .then(data => { setBlogPosts(data) })
       .catch((error) => { console.error(error) });
   }, []);
-
-  const navigateTo = (id) => history.push(`/post/${id}`);
 
   return (
     <React.Fragment>
@@ -35,8 +31,10 @@ export default function Home() {
             {blogPosts.map((post) => (
               <BlogCard
                 key={post._id}
+                id={post._id}
                 title={post.title}
                 author={post.author}
+                description={post.description}
                 date={new moment(Date(post.date.$date).toString()).format('YYYY-MM-DD')}
                 image={post.image_link}
               />

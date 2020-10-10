@@ -1,4 +1,6 @@
 import React from 'react';
+import { useHistory } from "react-router-dom";
+
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
@@ -21,12 +23,14 @@ const useStyles = makeStyles({
   },
 });
 
-export default function BlogCard({ title, date, author, description, image }) {
+export default function BlogCard({ id, title, date, author, description, image }) {
   const classes = useStyles();
+  const history = useHistory();
+  const navigateTo = () => history.push(`/post/${id}`);
 
   return (
     <Grid item xs={12} md={6}>
-      <CardActionArea component="a" href="#">
+      <CardActionArea component="button" onClick={navigateTo}>
         <Card className={classes.card}>
           <div className={classes.cardDetails}>
             <CardContent>
