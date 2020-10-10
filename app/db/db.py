@@ -19,4 +19,5 @@ class BlogPost(db.Document):
     songs = db.EmbeddedDocumentListField(ReferencedSongs)
     spotify_links = db.ListField(db.StringField())
     youtube_links = db.ListField(db.StringField())
+    image_link = db.StringField()
     meta = {'collection': 'musicBlog', 'queryset_class': BaseQuerySet}

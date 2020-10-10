@@ -14,9 +14,6 @@ Query parameters can be provided for more filtration, which include:
 > title [type: str] = title of the blog post
 > author [type: str] = name of the author
 > date [type: str] = date on which the post was written
-> artist [type: List[str]] = artist(s) from which discussed content is from
-> title [type: List[str]] = songs(s) discussed in posts
-> album [type: List[str]] = album(s) discussed in posts
 """
 @bp.route("/", methods=["GET"])
 def get_blog_posts():
@@ -64,6 +61,7 @@ Post form also can include:
 > songs = key-val dict of artist to song
 > spotify_links = list of spotify links to reference in posts
 > youtube_links = list of youtube links to reference in posts
+> image_link = string containing link to image used for post
 
 """
 @bp.route("/create", methods=["POST"])
@@ -85,6 +83,7 @@ Post form can include:
 > songs = key-val dict of artist to song
 > spotify_links = list of spotify links to reference in posts
 > youtube_links = list of youtube links to reference in posts
+> image_link = string containing link to image used for post
 
 """
 @bp.route("/edit/<uuid:primary_id>", methods=["PUT"])
@@ -102,16 +101,6 @@ def edit_blog_post(primary_id):
 
 """
 Route to delete an existent post and save to mongo.
-
-Post form can include:
-> title = title of the blog post
-> author = name of the author
-> date = date on which the post was written
-> content = string of post body content
-> songs = key-val dict of artist to song
-> spotify_links = list of spotify links to reference in posts
-> youtube_links = list of youtube links to reference in posts
-
 """
 @bp.route("/delete/<uuid:primary_id>", methods=["DELETE"])
 def delete_blog_post(primary_id):
