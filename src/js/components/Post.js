@@ -13,10 +13,10 @@ import moment from 'moment';
 
 import Header from './basic/Header';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
-    spacing: 10,
+    spacing: theme.spacing(10),
   },
   card: {
     maxWidth: 500,
@@ -24,7 +24,10 @@ const useStyles = makeStyles({
   cardMedia: {
     maxHeight: 300,
   },
-});
+  content: {
+    marginTop: theme.spacing(2),
+  }
+}));
 
 export default function Post() {
   const classes = useStyles();
@@ -41,6 +44,10 @@ export default function Post() {
       .catch((error) => { console.error(error) });
   }, []);
 
+  const splitByNewlines = (content) => {
+    return content.split("\n");
+  }
+
   return (
     <React.Fragment>
       <CssBaseline />
@@ -53,9 +60,11 @@ export default function Post() {
               <Typography variant="subtitle1" gutterBottom>
                 <i>{new moment(Date(blogPost.date.$date).toString()).format('YYYY-MM-DD')}</i> by <b>{blogPost.author}</b>
               </Typography>
-              <Typography variant="body2" gutterBottom>
-                {blogPost.content}
-              </Typography>
+              {splitByNewlines(blogPost.content).map((content, i) => (
+                <Typography key={i} variant="body2" className={classes.content} gutterBottom>
+                  {content}
+                </Typography>
+              ))}
             </Box>
           </div>
        }
