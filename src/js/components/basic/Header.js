@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
   toolbarTitle: {
     flex: 1,
     cursor: 'pointer',
+    color: theme.palette.darkText.main,
   },
   toolbarSecondary: {
     justifyContent: 'space-between',
@@ -29,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
   toolbarLink: {
     margin: theme.spacing(0.5),
     flexShrink: 0,
+    color: theme.palette.darkText.main,
   },
 }));
 
@@ -60,7 +62,7 @@ export default function Header({ title }) {
   return (
     <React.Fragment>
       <Toolbar className={classes.toolbar}>
-        <Button size="small" onClick={onSubscribeOpen}>Subscribe</Button>
+        <Button size="small" className={classes.toolbarLink} onClick={onSubscribeOpen}>Subscribe</Button>
         <Typography
           component="h2"
           variant="h4"

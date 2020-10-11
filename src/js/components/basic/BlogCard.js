@@ -10,9 +10,10 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   card: {
     display: 'flex',
+    backgroundColor: theme.palette.primary.main,
   },
   cardDetails: {
     flex: 1,
@@ -21,7 +22,13 @@ const useStyles = makeStyles({
   cardMedia: {
     width: 250,
   },
-});
+  titleColor: {
+    color: theme.palette.whiteText.main,
+  },
+  subtitleColor: {
+    color: theme.palette.darkText.main,
+  },
+}));
 
 export default function BlogCard({ id, title, date, author, description, image }) {
   const classes = useStyles();
@@ -34,9 +41,9 @@ export default function BlogCard({ id, title, date, author, description, image }
         <Card className={classes.card}>
           <div className={classes.cardDetails}>
             <CardContent>
-              {title && <Typography component="h3" variant="h6">{title}</Typography>}
-              {date && <Typography variant="subtitle1" color="textSecondary">{date}</Typography>}
-              {author && <Typography variant="subtitle1" color="textSecondary">{author}</Typography>}
+              {title && <Typography component="h3" variant="h6" className={classes.titleColor}>{title}</Typography>}
+              {date && <Typography variant="subtitle1" className={classes.subtitleColor}>{date}</Typography>}
+              {author && <Typography variant="subtitle1" className={classes.subtitleColor}>{author}</Typography>}
               {description && <Typography variant="subtitle1" paragraph>{description}...</Typography>}
             </CardContent>
           </div>

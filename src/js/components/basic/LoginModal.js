@@ -31,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+    color: theme.palette.whiteText.main,
   },
 }));
 
@@ -81,7 +82,7 @@ export default function LoginModal({ onClose, open }) {
               Sign In
             </Button>
             <Link href="#" variant="body2">
-              {"Don't have an account? Sign Up"}
+              Don't have an account? <b>Sign Up</b>!
             </Link>
           </form>
         </div>

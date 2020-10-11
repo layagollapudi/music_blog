@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 
-import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
@@ -9,7 +8,6 @@ import moment from 'moment';
 
 import Header from './basic/Header';
 import BlogCard from './basic/BlogCard';
-
 
 export default function Home() {
   const [blogPosts, setBlogPosts] = useState([]);

@@ -24,8 +24,12 @@ const useStyles = makeStyles((theme) => ({
   cardMedia: {
     maxHeight: 300,
   },
+  titleText: {
+    color: theme.palette.midText.main,
+  },
   content: {
     marginTop: theme.spacing(2),
+    color: theme.palette.darkText.main,
   }
 }));
 
@@ -56,8 +60,8 @@ export default function Post() {
         {blogPost &&
           <div className={classes.root}>
             <Box mx={5} my={5}>
-              <Typography variant="h5" gutterBottom>{blogPost.title}</Typography>
-              <Typography variant="subtitle1" gutterBottom>
+              <Typography variant="h5" className={classes.titleText} gutterBottom>{blogPost.title}</Typography>
+              <Typography variant="subtitle1" className={classes.titleText} gutterBottom>
                 <i>{new moment(Date(blogPost.date.$date).toString()).format('YYYY-MM-DD')}</i> by <b>{blogPost.author}</b>
               </Typography>
               {splitByNewlines(blogPost.content).map((content, i) => (
