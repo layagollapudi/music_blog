@@ -47,11 +47,13 @@ export default function BlogCard({ id, title, date, author, description, image }
               {description && <Typography variant="subtitle1" paragraph>{description}...</Typography>}
             </CardContent>
           </div>
-          { image && <CardMedia
-            className={classes.cardMedia}
-            image={image}
-            title={title}
-          /> }
+          { image &&
+            <CardMedia
+              className={classes.cardMedia}
+              image={image}
+              title={title}
+            />
+          }
         </Card>
       </CardActionArea>
     </Grid>

@@ -27,9 +27,16 @@ const useStyles = makeStyles((theme) => ({
   titleText: {
     color: theme.palette.midText.main,
   },
-  content: {
+  contentWrapper: {
+    display: 'flex',
     marginTop: theme.spacing(2),
+  },
+  content: {
+    marginRight: theme.spacing(5),
     color: theme.palette.darkText.main,
+  },
+  image: {
+    maxWidth: 500,
   }
 }));
 
@@ -64,11 +71,18 @@ export default function Post() {
               <Typography variant="subtitle1" className={classes.titleText} gutterBottom>
                 <i>{new moment(Date(blogPost.date.$date).toString()).format('YYYY-MM-DD')}</i> by <b>{blogPost.author}</b>
               </Typography>
-              {splitByNewlines(blogPost.content).map((content, i) => (
-                <Typography key={i} variant="body2" className={classes.content} gutterBottom>
-                  {content}
-                </Typography>
-              ))}
+              <div className={classes.contentWrapper}>
+                <div>
+                  {splitByNewlines(blogPost.content).map((content, i) => (
+                    <Typography key={i} variant="body2" className={classes.content} gutterBottom>
+                      {content}
+                    </Typography>
+                  ))}
+                </div>
+                {blogPost.image_link &&
+                  <div><img src={blogPost.image_link} className={classes.image} /></div>
+                }
+              </div>
             </Box>
           </div>
        }
