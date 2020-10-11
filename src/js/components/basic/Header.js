@@ -27,20 +27,29 @@ const useStyles = makeStyles((theme) => ({
     overflowX: 'auto',
   },
   toolbarLink: {
-    padding: theme.spacing(1),
+    margin: theme.spacing(0.5),
     flexShrink: 0,
   },
 }));
 
+// FOR TESTING
+const loggedIn = true;
+
 export default function Header({ title }) {
+
   const classes = useStyles();
   const history = useHistory();
 
+  const [openCreate, setOpenCreate] = useState(false);
   const [openLogin, setOpenLogin] = useState(false);
   const [openSubscribe, setOpenSubscribe] = useState(false);
+
   const navigateHome = () => {
     history.push('/');
   }
+
+  const onCreateOpen = () => { setOpenCreate(true); }
+  const onCreateClose = () => { setOpenCreate(false); }
 
   const onLoginOpen = () => { setOpenLogin(true); }
   const onLoginClose = () => { setOpenLogin(false); }
@@ -54,18 +63,32 @@ export default function Header({ title }) {
         <Button size="small" onClick={onSubscribeOpen}>Subscribe</Button>
         <Typography
           component="h2"
-          variant="h5"
+          variant="h4"
           color="inherit"
           align="center"
+          fontWeight="fontWeightBold"
           noWrap
           className={classes.toolbarTitle}
           onClick={navigateHome}
         >
           {title}
         </Typography>
-        <Button variant="outlined" size="small" onClick={onLoginOpen}>
-          Login
-        </Button>
+        <div>
+          {loggedIn &&
+            <Button
+              variant="outlined" size="small"
+              onClick={onCreateOpen} className={classes.toolbarLink}
+            >
+              Create
+            </Button>
+          }
+          <Button
+            variant="outlined" size="small"
+            onClick={loggedIn ? null : onLoginOpen} className={classes.toolbarLink}
+          >
+            {loggedIn ? "Logout" : "Login"}
+          </Button>
+        </div>
       </Toolbar>
       <LoginModal onClose={onLoginClose} open={openLogin} />
       <SubscribeModal onClose={onSubscribeClose} open={openSubscribe} />

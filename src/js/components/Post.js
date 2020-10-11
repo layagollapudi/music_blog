@@ -56,7 +56,7 @@ export default function Post() {
         {blogPost &&
           <div className={classes.root}>
             <Box mx={5} my={5}>
-              <Typography variant="h4" gutterBottom>{blogPost.title}</Typography>
+              <Typography variant="h5" gutterBottom>{blogPost.title}</Typography>
               <Typography variant="subtitle1" gutterBottom>
                 <i>{new moment(Date(blogPost.date.$date).toString()).format('YYYY-MM-DD')}</i> by <b>{blogPost.author}</b>
               </Typography>
