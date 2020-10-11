@@ -29,6 +29,8 @@ const useStyles = makeStyles((theme) => ({
   },
   contentWrapper: {
     display: 'flex',
+    flexGrow: 1,
+    alignItems: 'stretch',
     marginTop: theme.spacing(2),
   },
   content: {
@@ -36,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.darkText.main,
   },
   image: {
-    maxWidth: 500,
+    maxWidth: 550,
   }
 }));
 
