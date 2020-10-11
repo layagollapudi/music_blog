@@ -21,3 +21,14 @@ class BlogPost(db.Document):
     youtube_links = db.ListField(db.StringField())
     image_link = db.StringField()
     meta = {'collection': 'musicBlog', 'queryset_class': BaseQuerySet}
+
+class Subscriber(db.Document):
+    primary_id = db.UUIDField(binary=False, required=True, primary_key=True)
+    email_address = db.StringField(required=True)
+    meta = {'collection': 'subscriberInfo', 'queryset_class': BaseQuerySet}
+
+class AdminUser(db.Document):
+    primary_id = db.UUIDField(binary=False, required=True, primary_key=True)
+    email_address = db.StringField(required=True)
+    password_hash = db.StringField(required=True)
+    meta = {'collection': 'AdminUserInfo', 'queryset_class': BaseQuerySet}

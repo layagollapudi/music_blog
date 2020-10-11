@@ -65,3 +65,38 @@ def update_blog_post(request, post):
     # TODO: songs dict and links editing ...
     post.save()
     return
+
+
+'''
+Authenticates user-email password combination.
+
+:request - request objects
+
+Returns whether validation was successful or not.
+'''
+def add_subscriber_to_blog(request):
+    body = request.get_json()
+
+    if 'email_address' not in body:
+        return None
+
+    id = uuid.uuid4()
+    body['primary_id'] = id
+
+    return body
+
+
+'''
+Authenticates user-email password combination.
+
+:request - request objects
+
+Returns whether validation was successful or not.
+'''
+def complete_auth_validation(request):
+    body = request.get_json()
+
+    if 'email_address' not in body or 'password' not in body:
+        return None
+
+    return

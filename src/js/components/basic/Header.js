@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 // FOR TESTING
-const loggedIn = true;
+const loggedIn = false;
 
 export default function Header({ title }) {
 

@@ -7,15 +7,6 @@ from app.db.db import BlogPost
 from app.helpers.utils import *
 
 
-# Verification routes
-
-"""
-Route to verify login credentials
-"""
-@bp.route("/login", methods=["POST"])
-def login():
-    return {}
-
 # Blog Post related routes
 
 """

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory } from "react-router-dom";
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -38,6 +38,26 @@ export default function LoginModal({ onClose, open }) {
   const classes = useStyles();
   const history = useHistory();
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const json = {}
+    const formdata = new FormData(event.target);
+    formdata.forEach(function(value, prop){
+      json[prop] = value
+    });
+
+    const response = await fetch("http://localhost:5000/login", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(json),
+    }).then(response => {
+      console.log(response);
+    }).catch(error => {
+      console.log(error);
+    });
+  }
+
   return (
     <Dialog onClose={() => { onClose() }} open={open}>
       <Container component="main" maxWidth="xs">
@@ -46,10 +66,7 @@ export default function LoginModal({ onClose, open }) {
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign in
-          </Typography>
-          <form className={classes.form} noValidate>
+          <form className={classes.form} onSubmit={handleSubmit} noValidate>
             <TextField
               variant="outlined" margin="normal" required fullWidth autoFocus
               id="email" label="Email Address" name="email" autoComplete="email"
