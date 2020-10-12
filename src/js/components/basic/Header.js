@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   toolbarTitle: {
     flex: 1,
     cursor: 'pointer',
-    color: theme.palette.primary.main,
+    color: theme.palette.darkText.main,
   },
   toolbarSecondary: {
     justifyContent: 'space-between',

@@ -7,6 +7,7 @@ import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
 import moment from 'moment';
@@ -18,27 +19,19 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     spacing: theme.spacing(10),
   },
-  card: {
-    maxWidth: 500,
-  },
-  cardMedia: {
-    maxHeight: 300,
-  },
   titleText: {
-    color: theme.palette.midText.main,
+    color: theme.palette.darkText.main,
   },
   contentWrapper: {
-    display: 'flex',
     flexGrow: 1,
-    alignItems: 'stretch',
     marginTop: theme.spacing(2),
   },
   content: {
-    marginRight: theme.spacing(5),
-    color: theme.palette.darkText.main,
+    color: theme.palette.midText.main,
   },
   image: {
-    maxWidth: 550,
+    maxWidth: '100%',
+    maxHeight: '100%',
   }
 }));
 
@@ -74,16 +67,20 @@ export default function Post() {
                 <i>{new moment(Date(blogPost.date.$date).toString()).format('YYYY-MM-DD')}</i> by <b>{blogPost.author}</b>
               </Typography>
               <div className={classes.contentWrapper}>
-                <div>
-                  {splitByNewlines(blogPost.content).map((content, i) => (
-                    <Typography key={i} variant="body2" className={classes.content} gutterBottom>
-                      {content}
-                    </Typography>
-                  ))}
-                </div>
-                {blogPost.image_link &&
-                  <div><img src={blogPost.image_link} className={classes.image} /></div>
-                }
+                <Grid container spacing={6}>
+                  <Grid item sm={6}>
+                    {splitByNewlines(blogPost.content).map((content, i) => (
+                      <Typography key={i} variant="body2" className={classes.content} gutterBottom>
+                        {content}
+                      </Typography>
+                    ))}
+                  </Grid>
+                  {blogPost.image_link &&
+                    <Grid item sm={6} zeroMinWidth>
+                      <img src={blogPost.image_link} className={classes.image} />
+                    </Grid>
+                  }
+                </Grid>
               </div>
             </Box>
           </div>
