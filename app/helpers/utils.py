@@ -74,7 +74,7 @@ Authenticates user-email password combination.
 
 Returns whether validation was successful or not.
 '''
-def add_subscriber_to_blog(request):
+def create_subscriber(request):
     body = request.get_json()
 
     if 'email_address' not in body:
@@ -90,13 +90,16 @@ def add_subscriber_to_blog(request):
 Authenticates user-email password combination.
 
 :request - request objects
-
 Returns whether validation was successful or not.
 '''
-def complete_auth_validation(request):
+def create_admin_user(request):
     body = request.get_json()
 
     if 'email_address' not in body or 'password' not in body:
         return None
 
-    return
+    id = uuid.uuid4()
+    return {
+        'primary_id': id,
+        'email_address': body['email_address']
+    }

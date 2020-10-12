@@ -50,7 +50,7 @@ export default function LoginModal({ onClose, open }) {
           <form className={classes.form} onSubmit={handleSubmit} noValidate>
             <TextField
               variant="outlined" margin="normal" required fullWidth autoFocus
-              id="email" label="Email Address" name="email" autoComplete="email"
+              id="email_address" label="Email Address" name="email_address" autoComplete="email"
             />
             <TextField
               variant="outlined" margin="normal" required fullWidth

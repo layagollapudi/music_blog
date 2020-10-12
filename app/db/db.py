@@ -1,4 +1,5 @@
 from flask_mongoengine import MongoEngine, BaseQuerySet
+from passlib.apps import custom_app_context as pwd_context
 
 db = MongoEngine()
 
@@ -32,3 +33,9 @@ class AdminUser(db.Document):
     email_address = db.StringField(required=True)
     password_hash = db.StringField(required=True)
     meta = {'collection': 'AdminUserInfo', 'queryset_class': BaseQuerySet}
+
+    def hash_password(self, password):
+        self.password_hash = pwd_context.encrypt(password)
+
+    def verify_password(self, password):
+        return pwd_context.verify(password, self.password_hash)
