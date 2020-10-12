@@ -13,30 +13,10 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    marginTop: theme.spacing(4),
-    marginBottom: theme.spacing(4),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-    color: theme.palette.whiteText.main,
-  },
-}));
+import { modalStyles } from '../../helpers/styling';
 
 export default function LoginModal({ onClose, open }) {
-  const classes = useStyles();
+  const classes = modalStyles();
   const history = useHistory();
 
   const handleSubmit = async (event) => {

@@ -10,28 +10,10 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 
-const useStyles = makeStyles((theme) => ({
-  card: {
-    display: 'flex',
-    backgroundColor: theme.palette.primary.main,
-  },
-  cardDetails: {
-    flex: 1,
-    flexDirection: 'column',
-  },
-  cardMedia: {
-    width: 250,
-  },
-  titleColor: {
-    color: theme.palette.whiteText.main,
-  },
-  subtitleColor: {
-    color: theme.palette.darkText.main,
-  },
-}));
+import { cardStyles } from '../../helpers/styling';
 
 export default function BlogCard({ id, title, date, author, description, image }) {
-  const classes = useStyles();
+  const classes = cardStyles();
   const history = useHistory();
   const navigateTo = () => history.push(`/post/${id}`);
 

@@ -13,33 +13,14 @@ import Link from '@material-ui/core/Link';
 import LoginModal from './LoginModal';
 import SubscribeModal from './SubscribeModal';
 
-const useStyles = makeStyles((theme) => ({
-  toolbar: {
-    borderBottom: `1px solid ${theme.palette.divider}`,
-    marginBottom: theme.spacing(1),
-  },
-  toolbarTitle: {
-    flex: 1,
-    cursor: 'pointer',
-    color: theme.palette.darkText.main,
-  },
-  toolbarSecondary: {
-    justifyContent: 'space-between',
-    overflowX: 'auto',
-  },
-  toolbarLink: {
-    margin: theme.spacing(0.5),
-    flexShrink: 0,
-    color: theme.palette.darkText.main,
-  },
-}));
+import { toolbarStyles } from '../../helpers/styling';
 
 // FOR TESTING
 const loggedIn = false;
 
 export default function Header({ title }) {
 
-  const classes = useStyles();
+  const classes = toolbarStyles();
   const history = useHistory();
 
   const [openCreate, setOpenCreate] = useState(false);

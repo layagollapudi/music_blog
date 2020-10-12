@@ -15,7 +15,7 @@ import moment from 'moment';
 import Header from './basic/Header';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  rootPost: {
     width: '100%',
     spacing: theme.spacing(10),
   },
@@ -60,7 +60,7 @@ export default function Post() {
       <Container maxWidth="lg">
         <Header title="Music Musings" />
         {blogPost &&
-          <div className={classes.root}>
+          <div className={classes.rootPost}>
             <Box mx={5} my={5}>
               <Typography variant="h5" className={classes.titleText} gutterBottom>{blogPost.title}</Typography>
               <Typography variant="subtitle1" className={classes.titleText} gutterBottom>

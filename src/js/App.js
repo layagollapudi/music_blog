@@ -7,7 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Home from "./components/Home";
 import Post from "./components/Post";
 
-import { theme } from "./helpers/paletteTheme";
+import { theme } from "./helpers/styling";
 
 export default function App() {
   return (
