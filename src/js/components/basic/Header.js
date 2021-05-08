@@ -12,11 +12,12 @@ import Link from '@material-ui/core/Link';
 
 import LoginModal from './LoginModal';
 import SubscribeModal from './SubscribeModal';
+import BlogCardModal from './BlogCardModal';
 
 import { toolbarStyles } from '../../helpers/styling';
 
 // FOR TESTING
-const loggedIn = false;
+const loggedIn = true;
 
 export default function Header({ title }) {
 
@@ -61,9 +62,7 @@ export default function Header({ title }) {
             <Button
               variant="outlined" size="small"
               onClick={onCreateOpen} className={classes.toolbarLink}
-            >
-              Create
-            </Button>
+            >Create</Button>
           }
           <Button
             variant="outlined" size="small"
@@ -75,6 +74,7 @@ export default function Header({ title }) {
       </Toolbar>
       <LoginModal onClose={onLoginClose} open={openLogin} />
       <SubscribeModal onClose={onSubscribeClose} open={openSubscribe} />
+      <BlogCardModal onClose={onCreateClose} open={openCreate} />
     </React.Fragment>
   );
 }

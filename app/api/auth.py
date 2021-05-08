@@ -20,28 +20,6 @@ def subscribe():
     subscriber = Subscriber(**body).save()
     return Response(str(subscriber.email_address), mimetype="application/json", status=200)
 
-# Verification routes
-
-"""
-Route to verify login credentials
-"""
-@bp.route("/user_create", methods=["POST"])
-def user_create():
-    body = create_admin_user(request)
-    if not body:
-        return Response(f"Bad post request, missing some or all of expected parameters.", status=404)
-
-    try:
-        user = AdminUser(**body)
-
-        password = request.json.get('password')
-        user.hash_password(password)
-        saved = user.save()
-
-        return Response(str(saved.email_address), mimetype="application/json", status=200)
-    except:
-        return Response(f"Unable to create user.", status=500)
-
 
 """
 Route to verify login credentials

@@ -38,6 +38,7 @@ export const modalStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    overflowX: 'scroll',
   },
   avatar: {
     margin: theme.spacing(1),
@@ -51,6 +52,25 @@ export const modalStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
     color: theme.palette.whiteText.main,
   },
+  groupEntries: {
+    marginRight: theme.spacing(3),
+  },
+  parentGroup: {
+    display: 'inline-flex',
+    overflowX: 'scroll',
+  },
+  buttonParent: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    maxWidth: "50%",
+  },
+  buttonList: {
+    margin: theme.spacing(0.5),
+    maxHeight: '3rem',
+    align: 'left',
+    fontSize: '0.25rem',
+    overflowX: 'scroll',
+  }
 }));
 
 export const toolbarStyles = makeStyles((theme) => ({
